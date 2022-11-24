@@ -90,6 +90,7 @@ class project_excel_report(models.TransientModel):
         self.env.cr.execute(query)
         workbook = xlwt.Workbook(encoding="UTF-8")
         sheet = workbook.add_sheet("project excel report")
+
         format1 = xlwt.easyxf('font:bold True;pattern: pattern solid, fore_colour gray25;align: horiz left')
         sheet.write(2, 0, 'project', format1)
         sheet.write(2, 1, 'budget', format1)
@@ -105,15 +106,33 @@ class project_excel_report(models.TransientModel):
         for row in range(len(data)):
             h = 0
             for i in data[row]:
-                sheet.write(x + 3, h, i, format1)
 
+                sheet.write(x + 3, h, i, format1)
                 h = 1 + h
             x = 1 +x
 
 
 
 
+        for name in data:
+            workbook.add_sheet(name[0])
+        for n, datas in enumerate(list(data)):
+            ws = workbook.get_sheet(n+1)
+            x = 0
+            h = 0
+            ws.write(2, 0, 'project', format1)
+            ws.write(2, 1, 'budget', format1)
+            ws.write(2, 2, 'CTD', format1)
+            ws.write(2, 3, 'Sale Order', format1)
+            ws.write(2, 4, 'Invoiced Amount', format1)
+            ws.write(2, 5, 'Revenue to Date', format1)
+            ws.write(2, 6, 'Margin', format1)
+            ws.write(2, 7, '% Of Completion', format1)
+            for i in datas:
 
+                ws.write(x + 3, h, i, format1)
+                h = 1 + h
+            x = 1 + x
 
 
         fp = BytesIO()
