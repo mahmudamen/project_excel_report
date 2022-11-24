@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_excel_report,project_excel_report,model_project_excel_report,account.group_account_user,1,1,1,1
+
+access_project_excel_report_xls,project_excel_report_xls,model_project_excel_report_xls,account.group_account_user,1,1,1,1

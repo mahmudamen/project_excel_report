@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="project_excel_report_form_view" model="ir.ui.view">
+            <field name="name">project.excel.report.form</field>
+            <field name="model">project.excel.report</field>
+            <field name="arch" type="xml">
+                <form string="Project revenue calculation">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="project_id"/>
+                            <h1>
+                                <field name="project_id" placeholder="project name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="budget"/>
+                                <field name="ctd"/>
+                                <field name="saleorder"/>
+                            </group>
+                            <group>
+                                <field name="invoicedamount"/>
+                                <field name="revenuetodate"/>
+                                <field name="margin" />
+                                <field name="ofcompletion"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="project_excel_report_tree_view" model="ir.ui.view">
+            <field name="name">project.excel.report.tree</field>
+            <field name="model">project.excel.report</field>
+            <field name="arch" type="xml">
+                <tree string="Project revenue calculation">
+                    <header>
+                        <button name="project_excel_report" type="object" string="xls" class="oe_highlight"/>
+                    </header>
+                    <field name="project_id"/>
+                    <field name="budget"/>
+                    <field name="ctd"/>
+                    <field name="saleorder"/>
+                    <field name="invoicedamount"/>
+                    <field name="revenuetodate"/>
+                    <field name="margin" />
+                    <field name="ofcompletion"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="project_excel_report_search_view" model="ir.ui.view">
+            <field name="name">project.excel.report.search</field>
+            <field name="model">project.excel.report</field>
+            <field name="arch" type="xml">
+                <search string="Project revenue calculation">
+                    <group expand="1" string="Group By">
+                        <filter string="project" name="project_id" domain="[]"
+                                context="{'group_by':'project_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+
+        <record id="project_excel_report_act_window" model="ir.actions.act_window">
+            <field name="name">Project revenue calculation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">project.excel.report</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Project revenue calculation" id="project_excel_report_menu" parent="account.account_reports_management_menu" action="project_excel_report_act_window" groups="account.group_account_user"/>
+
+    </data>
+</odoo>
